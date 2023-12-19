@@ -43,7 +43,7 @@ const scalarToZod = (type) => {
         case "std::duration":
             return [
                 zodType("string"),
-                zodType("regex", /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(.\d+)?(([+-]\d{2}:\d{2})|Z)?$/),
+                zodType("regex", /^(\d+(\.\d+)?\s(microseconds|milliseconds|seconds|minutes|hours)\s?)+$/),
             ];
         case "std::float32":
             return [
