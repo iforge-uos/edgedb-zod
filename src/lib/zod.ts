@@ -11,32 +11,21 @@ export const scalarToZod = (type: $.introspect.ScalarType) => {
   if (type.enum_values) {
     const values = type.enum_values.map((v) => `"${v}"`);
 
-    return [
-      zodEnum(values),
-    ];
+    return [zodEnum(values)];
   }
 
   switch (type.name) {
     case "std::str":
-      return [
-        zodType("string"),
-      ];
+      return [zodType("string")];
 
     case "std::bool":
-      return [
-        zodType("boolean"),
-      ];
+      return [zodType("boolean")];
 
     case "std::json":
-      return [
-        zodType("unknown"),
-      ];
+      return [zodType("unknown")];
 
     case "std::uuid":
-      return [
-        zodType("string"),
-        zodType("uuid"),
-      ];
+      return [zodType("string"), zodType("uuid")];
 
     case "std::int16":
       return [
@@ -55,46 +44,42 @@ export const scalarToZod = (type: $.introspect.ScalarType) => {
       ];
 
     case "std::int64":
-      return [
-        zodType("number"),
-        zodType("int"),
-        zodType("min", 0),
-      ];
+      return [zodType("number"), zodType("int"), zodType("min", 0)];
 
     case "std::bigint":
-      return [
-        zodType("bigint"),
-      ];
+      return [zodType("bigint")];
 
     case "std::datetime":
+      return [zodType("date")];
+    case "std::duration":
       return [
-        zodType("date"),
+        zodType("string"),
+        zodType(
+          "regex",
+          /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(.\d+)?(([+-]\d{2}:\d{2})|Z)?$/
+        ),
       ];
 
     case "std::float32":
       return [
         zodType("number"),
         zodType("min", 0),
-        zodType("max", 3.40282347E+38),
+        zodType("max", 3.40282347e38),
       ];
 
     case "std::float64":
       return [
         zodType("number"),
         zodType("min", 0),
-        zodType("max", 1.7976931348623157E+308),
+        zodType("max", 1.7976931348623157e308),
       ];
 
     // This is not a type in EdgeDB, the JS driver has this
     case "std::number":
-      return [
-        zodType("number"),
-      ];
+      return [zodType("number")];
 
     default:
       // TODO: Null might make more sense
-      return [
-        zodType("never"),
-      ];
+      return [zodType("never")];
   }
 };
