@@ -1,28 +1,41 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getPointerConstraints = exports.getProjectRoot = exports.ensureDir = void 0;
-const edgedb_1 = require("edgedb");
+const promises_1 = __importDefault(require("node:fs/promises"));
+const node_path_1 = __importDefault(require("node:path"));
 const ensureDir = async (path) => {
-    const exists = await edgedb_1.adapter.exists(path);
-    if (!exists) {
-        return edgedb_1.adapter.fs.mkdir(path, {
+    try {
+        await promises_1.default.access(path);
+    }
+    catch {
+        return promises_1.default.mkdir(path, {
             recursive: true,
         });
     }
 };
 exports.ensureDir = ensureDir;
 const getProjectRoot = async (dir) => {
-    const currentDir = dir ?? edgedb_1.adapter.process.cwd();
-    const systemRoot = edgedb_1.adapter.path.parse(currentDir).root;
+    const currentDir = dir ?? process.cwd();
+    const systemRoot = node_path_1.default.parse(currentDir).root;
     if (currentDir === systemRoot) {
         return null;
     }
-    const tomlPath = edgedb_1.adapter.path.join(currentDir, "edgedb.toml");
-    const tomlExists = await edgedb_1.adapter.exists(tomlPath);
-    if (tomlExists) {
+    const oldTomlPath = node_path_1.default.join(currentDir, "edgedb.toml");
+    const tomlPath = node_path_1.default.join(currentDir, "gel.toml");
+    try {
+        await promises_1.default.access(oldTomlPath);
         return currentDir;
     }
-    const next = edgedb_1.adapter.path.join(currentDir, "..");
+    catch { }
+    try {
+        await promises_1.default.access(tomlPath);
+        return currentDir;
+    }
+    catch { }
+    const next = node_path_1.default.join(currentDir, "..");
     return (0, exports.getProjectRoot)(next);
 };
 exports.getProjectRoot = getProjectRoot;
