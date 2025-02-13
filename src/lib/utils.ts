@@ -1,4 +1,6 @@
-import { $, adapter, Client } from "edgedb";
+import fs from "node:fs/promises";
+import path from "node:path";
+import { $, Client } from "edgedb";
 
 export interface PointerConstraint {
   name: string,
@@ -10,31 +12,36 @@ export interface PointerConstraint {
 }
 
 export const ensureDir = async (path: string) => {
-  const exists = await adapter.exists(path);
-
-  if (!exists) {
-    return adapter.fs.mkdir(path, {
+  try {
+    await fs.access(path);
+  } catch {
+    return fs.mkdir(path, {
       recursive: true,
     });
   }
 };
 
 export const getProjectRoot = async (dir?: string): Promise<string | null> => {
-  const currentDir = dir ?? adapter.process.cwd();
-  const systemRoot = adapter.path.parse(currentDir).root;
+  const currentDir = dir ?? process.cwd();
+  const systemRoot = path.parse(currentDir).root;
 
   if (currentDir === systemRoot) {
     return null;
   }
 
-  const tomlPath = adapter.path.join(currentDir, "edgedb.toml");
+  const oldTomlPath = path.join(currentDir, "edgedb.toml");
+  const tomlPath = path.join(currentDir, "gel.toml");
 
-  const tomlExists = await adapter.exists(tomlPath);
-  if (tomlExists) {
+  try {
+    await fs.access(oldTomlPath);
     return currentDir;
-  }
+  } catch {}
+  try {
+    await fs.access(tomlPath);
+    return currentDir;
+  } catch {}
 
-  const next = adapter.path.join(currentDir, "..");
+  const next = path.join(currentDir, "..");
   return getProjectRoot(next);
 };
 
