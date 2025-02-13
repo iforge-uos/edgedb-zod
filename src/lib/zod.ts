@@ -56,7 +56,7 @@ export const scalarToZod = (type: $.introspect.ScalarType) => {
         zodType("string"),
         zodType(
           "regex",
-          /^(\d+(\.\d+)?\s(microseconds|milliseconds|seconds|minutes|hours)\s?)+$/
+          /^P(?:\d+Y)?(?:\d+M)?(?:\d+D)?(?:T(?:\d+H)?(?:\d+M)?(?:\d+(?:\.\d+)?S)?)?$/,
         ),
       ];
 
