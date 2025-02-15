@@ -19,7 +19,7 @@
     "test": "vitest --run --coverage"
   },
   "dependencies": {
-    "edgedb": "^1.0.0",
+    "edgedb": "^1.6.0-canary.20250213T002813",
     "yargs": "^17.6.0",
     "zod": "^3.19.0"
   },
