@@ -45,14 +45,24 @@ module default {
     optional property data -> str;
   };
 
-  abstract type HasTimestamps {
-    optional property createdAt -> datetime {
+  abstract type Nothing {
+    test: str;
+  }
+
+  abstract type HasCreatedAt {
+     optional property createdAt -> datetime {
       readonly := true;
       annotation description := "Timestamp when this entity was created";
     };
+  }
 
+  abstract type HasUpdatedAt {
     optional property updatedAt -> datetime {
       annotation description := "Timestamp when this entity was updated";
     };
   };
+
+  abstract type HasTimestamps extending HasCreatedAt, HasUpdatedAt {};
+
+  type DeeplyNested extending HasTimestamps, Nothing {};
 };

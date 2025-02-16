@@ -92,6 +92,28 @@ export const scalarToZod = (type: $.introspect.ScalarType) => {
         zodType("number"),
       ];
 
+    case "std::datetime":
+      return [
+        zodType("string"), 
+        zodType("datetime", "{ offset: true }")
+      ];
+    case "std::duration":
+      return [
+        zodType("string"),
+        zodType("duration")
+      ];
+
+    case "cal::local_datetime":
+      return [
+        zodType("string"),
+        zodType("datetime", "{ local: true }")
+      ];
+    case "cal::local_time":
+      return [
+        zodType("string"),
+        zodType("time")
+      ];
+
     default:
       // TODO: Null might make more sense
       return [
