@@ -2,7 +2,7 @@
   "name": "edgedb-zod",
   "author": "Sikarii",
   "license": "MIT",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Creates Zod schemas for your EdgeDB types",
   "bin": "dist/cli.js",
   "main": "dist/index.js",
