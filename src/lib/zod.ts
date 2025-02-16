@@ -42,49 +42,37 @@ export const scalarToZod = (type: $.introspect.ScalarType) => {
       return [
         zodType("number"),
         zodType("int"),
-        zodType("min", 0),
-        zodType("max", 65535),
+        zodType("min", -32768),
+        zodType("max", 32767),
       ];
 
     case "std::int32":
       return [
         zodType("number"),
         zodType("int"),
-        zodType("min", 0),
+        zodType("min", -2147483648),
         zodType("max", 2147483647),
       ];
 
     case "std::int64":
       return [
-        zodType("number"),
-        zodType("int"),
-        zodType("min", 0),
+        zodType("bigint"),
+        zodType("min", "-9223372036854775808n"),
+        zodType("max", "9223372036854775807n"),
       ];
 
     case "std::bigint":
-      return [
-        zodType("bigint"),
-      ];
-
-    case "std::datetime":
-      return [
-        zodType("string"),
-        zodType("regex", /^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d{3})?)?Z?$/),
-      ];
+      return [zodType("bigint")];
 
     case "std::float32":
       return [
         zodType("number"),
-        zodType("min", 0),
-        zodType("max", 3.40282347E+38),
+        zodType("min", -3.40282347e38),
+        zodType("max", 3.40282347e38),
       ];
 
     case "std::float64":
-      return [
-        zodType("number"),
-        zodType("min", 0),
-        zodType("max", 1.7976931348623157E+308),
-      ];
+      return [zodType("number")];
 
     // This is not a type in EdgeDB, the JS driver has this
     case "std::number":
