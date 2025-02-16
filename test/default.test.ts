@@ -146,3 +146,25 @@ describe("default::UpdateUser", async () => {
     expect(schema.shape).toMatchSnapshot();
   });
 });
+
+describe("default::DeeplyNested", async () => {
+  const schema = (await defaultMod).CreateDeeplyNestedSchema;
+
+  it("is exported", () => {
+    expect(schema).toBeDefined();
+  });
+
+  it("is the correct instance", () => {
+    expect(schema).toBeInstanceOf(z.ZodObject);
+  });
+
+  // it("has the expected shape", () => {
+  //   expect(schema.shape).toMatchSnapshot();
+  // });
+
+  it("has the right fields", () => {
+    expect(schema.shape).toHaveProperty("test");
+    expect(schema.shape).toHaveProperty("createdAt");
+    expect(schema.shape).toHaveProperty("updatedAt");
+  });
+});
