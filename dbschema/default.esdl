@@ -65,4 +65,24 @@ module default {
   abstract type HasTimestamps extending HasCreatedAt, HasUpdatedAt {};
 
   type DeeplyNested extending HasTimestamps, Nothing {};
+
+  type EnsureRegisteredInStd {
+    field0: std::str;
+    field1: std::bool;
+    field2: std::json;
+    field3: std::uuid;
+    field4: std::int16;
+    field5: std::int32;
+    field6: std::int64;
+    field7: std::bigint;
+    field8: std::float32;
+    field9: std::float64;
+    field10: std::datetime;
+    field11: std::duration;
+    field12: cal::local_datetime;
+    field13: cal::local_date;
+    field14: cal::local_time;
+    field15: cal::relative_duration;
+    field16: cal::date_duration;
+  }
 };

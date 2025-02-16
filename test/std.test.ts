@@ -2,6 +2,7 @@ import { z } from "zod";
 import { it, describe, expect } from "vitest";
 
 const std = import("../dbschema/edgedb-zod/modules/std");
+const cal = import("../dbschema/edgedb-zod/modules/cal");
 
 describe("std::int16", async () => {
   const schema = (await std).int16Schema;
@@ -43,7 +44,7 @@ describe("std::int64", async () => {
   });
 
   it("is the correct instance", () => {
-    expect(schema).toBeInstanceOf(z.ZodNumber);
+    expect(schema).toBeInstanceOf(z.ZodBigInt);
   });
 
   it("it does the correct checks", () => {
@@ -117,6 +118,54 @@ describe("std::number", async () => {
 
 describe("std::datetime", async () => {
   const schema = (await std).datetimeSchema;
+
+  it("is exported", () => {
+    expect(schema).toBeDefined();
+  });
+
+  it("is the correct instance", () => {
+    expect(schema).toBeInstanceOf(z.ZodString);
+  });
+
+  it("it does the correct checks", () => {
+    expect(schema._def.checks).toMatchSnapshot();
+  });
+});
+
+describe("std::duration", async () => {
+  const schema = (await std).durationSchema;
+
+  it("is exported", () => {
+    expect(schema).toBeDefined();
+  });
+
+  it("is the correct instance", () => {
+    expect(schema).toBeInstanceOf(z.ZodString);
+  });
+
+  it("it does the correct checks", () => {
+    expect(schema._def.checks).toMatchSnapshot();
+  });
+});
+
+describe("cal::local_datetime", async () => {
+  const schema = (await cal).local_datetimeSchema;
+
+  it("is exported", () => {
+    expect(schema).toBeDefined();
+  });
+
+  it("is the correct instance", () => {
+    expect(schema).toBeInstanceOf(z.ZodString);
+  });
+
+  it("it does the correct checks", () => {
+    expect(schema._def.checks).toMatchSnapshot();
+  });
+});
+
+describe("cal::local_time", async () => {
+  const schema = (await cal).local_timeSchema;
 
   it("is exported", () => {
     expect(schema).toBeDefined();
