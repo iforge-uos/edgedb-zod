@@ -1,4 +1,8 @@
-import { $, adapter, Client } from "edgedb";
+import fs from "node:fs/promises";
+import path from "node:path";
+import * as TOML from "@iarna/toml";
+import { $, Client } from "edgedb";
+import { exists, readFileUtf8 } from "edgedb/dist/systemUtils";
 
 export interface PointerConstraint {
   name: string,
@@ -10,32 +14,45 @@ export interface PointerConstraint {
 }
 
 export const ensureDir = async (path: string) => {
-  const exists = await adapter.exists(path);
-
-  if (!exists) {
-    return adapter.fs.mkdir(path, {
+  try {
+    await fs.access(path);
+  } catch {
+    return fs.mkdir(path, {
       recursive: true,
     });
   }
 };
 
-export const getProjectRoot = async (dir?: string): Promise<string | null> => {
-  const currentDir = dir ?? adapter.process.cwd();
-  const systemRoot = adapter.path.parse(currentDir).root;
+export const getProjectRoot = async (): Promise<string | null> => {
+  let currentDir = process.cwd();
+  let schemaDir = "dbschema";
+  const systemRoot = path.parse(currentDir).root;
+  while (currentDir !== systemRoot) {
+    const gelToml = path.join(currentDir, "gel.toml");
+    const edgedbToml = path.join(currentDir, "edgedb.toml");
+    let configFile: string | null = null;
 
-  if (currentDir === systemRoot) {
-    return null;
+    if (await exists(gelToml)) {
+      configFile = gelToml;
+    } else if (await exists(edgedbToml)) {
+      configFile = edgedbToml;
+    }
+
+    if (configFile) {
+      const config: {
+        project?: { "schema-dir"?: string };
+      } = TOML.parse(await readFileUtf8(configFile));
+
+      const maybeProjectTable = config.project;
+      const maybeSchemaDir = maybeProjectTable?.["schema-dir"];
+      if (typeof maybeSchemaDir === "string") {
+        schemaDir = maybeSchemaDir;
+      }
+      break;
+    }
+    currentDir = path.join(currentDir, "..");
   }
-
-  const tomlPath = adapter.path.join(currentDir, "edgedb.toml");
-
-  const tomlExists = await adapter.exists(tomlPath);
-  if (tomlExists) {
-    return currentDir;
-  }
-
-  const next = adapter.path.join(currentDir, "..");
-  return getProjectRoot(next);
+  return schemaDir;
 };
 
 export const getPointerConstraints = async (
