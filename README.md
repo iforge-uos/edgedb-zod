@@ -3,14 +3,16 @@
 `edgedb-zod` is a code generator for [Zod](https://github.com/colinhacks/zod) schemas from your EdgeDB database schema.
 
 2 types of schemas will be generated:
+
 - `Create`: All properties excluding link properties
 - `Update`: All properties excluding link and readonly properties
 
 ## CLI
 
-To run the CLI: `edgedb-zod [options]`
+To run the CLI: `npx edgedb-zod [options]` or `pnpm exec edgedb-zod`
 
 Currently the supported options are:
+
 - `--outputDir`: The output directory relative from your `edgedb.toml`
 - `--target ts|mts`: If set to `mts` will include `.js` in import statements
 
@@ -59,6 +61,7 @@ Are we missing any? Please open an issue or PR.
 ## Example output
 
 Partial output of `edgedb-zod/modules/default.ts`:
+
 ```ts
 // #region default::User
 export const CreateUserSchema = z.
