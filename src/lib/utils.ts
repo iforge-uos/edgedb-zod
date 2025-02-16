@@ -5,12 +5,13 @@ import { $, Client } from "edgedb";
 import { exists, readFileUtf8 } from "edgedb/dist/systemUtils";
 
 export interface PointerConstraint {
-  name: string,
+  name: string;
   params: {
-    name: string,
-    kind: string,
-    value: string,
-  }[]
+    name: string;
+    kind: string;
+    value: string;
+  }[];
+  finalexpr: string;
 }
 
 export const ensureDir = async (path: string) => {
@@ -74,15 +75,14 @@ export const getPointerConstraints = async (
       params: {
         name,
         kind,
-        value := @value
-      }
+        value := @value,
+      },
+      finalexpr,
     }
   `;
 
-  const result = await client.queryJSON(query, {
+  return (await client.query(query, {
     objectName: objName,
     pointerName: pointer.name,
-  });
-
-  return JSON.parse(result) as PointerConstraint[];
+  })) as PointerConstraint[];
 };
