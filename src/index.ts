@@ -73,6 +73,19 @@ const writeProp = (
   }
 };
 
+const getBases = (
+  type: $.introspect.ObjectType,
+  ctx: Context,
+): Context["registry"]["objects"] => {
+  const userDefinedBases = type.bases
+    .map((b) => ctx.registry.objects.find((x) => x.id === b.id))
+    .filter((b): b is (typeof ctx.registry.objects)[number] => !!b);
+  return [
+    ...userDefinedBases,
+    ...userDefinedBases.flatMap((base) => getBases(base.type, ctx)),
+  ];
+};
+
 const writeObject = async (
   type: $.introspect.ObjectType,
   ctx: Context,
@@ -84,9 +97,7 @@ const writeObject = async (
   ctx.file.write(`export const ${identifier} = z.\n`);
   ctx.file.write("object({", 1);
 
-  const userDefinedBases = type.bases
-    .map((b) => ctx.registry.objects.find((x) => x.id === b.id))
-    .filter((b): b is typeof ctx.registry.objects[number] => !!b);
+  const userDefinedBases = getBases(type, ctx);
 
   for (const base of userDefinedBases) {
     ctx.file.write(` // ${base.fullName}\n`);
