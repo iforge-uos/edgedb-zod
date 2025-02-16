@@ -1,10 +1,40 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`cal::local_datetime > it does the correct checks 1`] = `
+[
+  {
+    "kind": "datetime",
+    "local": true,
+    "offset": false,
+    "precision": null,
+  },
+]
+`;
+
+exports[`cal::local_time > it does the correct checks 1`] = `
+[
+  {
+    "kind": "time",
+    "precision": null,
+  },
+]
+`;
 
 exports[`std::datetime > it does the correct checks 1`] = `
 [
   {
-    "kind": "regex",
-    "regex": /\\^\\\\d\\{4\\}-\\\\d\\{2\\}-\\\\d\\{2\\}\\(T\\\\d\\{2\\}:\\\\d\\{2\\}:\\\\d\\{2\\}\\(\\\\\\.\\\\d\\{3\\}\\)\\?\\)\\?Z\\?\\$/,
+    "kind": "datetime",
+    "local": false,
+    "offset": true,
+    "precision": null,
+  },
+]
+`;
+
+exports[`std::duration > it does the correct checks 1`] = `
+[
+  {
+    "kind": "duration",
   },
 ]
 `;
@@ -19,13 +49,13 @@ exports[`std::int16 > it does the correct checks 1`] = `
     "inclusive": true,
     "kind": "min",
     "message": undefined,
-    "value": 0,
+    "value": -32768,
   },
   {
     "inclusive": true,
     "kind": "max",
     "message": undefined,
-    "value": 65535,
+    "value": 32767,
   },
 ]
 `;
@@ -40,7 +70,7 @@ exports[`std::int32 > it does the correct checks 1`] = `
     "inclusive": true,
     "kind": "min",
     "message": undefined,
-    "value": 0,
+    "value": -2147483648,
   },
   {
     "inclusive": true,
@@ -54,14 +84,16 @@ exports[`std::int32 > it does the correct checks 1`] = `
 exports[`std::int64 > it does the correct checks 1`] = `
 [
   {
-    "kind": "int",
-    "message": undefined,
-  },
-  {
     "inclusive": true,
     "kind": "min",
     "message": undefined,
-    "value": 0,
+    "value": -9223372036854775808n,
+  },
+  {
+    "inclusive": true,
+    "kind": "max",
+    "message": undefined,
+    "value": 9223372036854775807n,
   },
 ]
 `;
