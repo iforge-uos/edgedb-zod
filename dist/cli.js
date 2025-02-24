@@ -36,7 +36,7 @@ const utils_1 = require("./lib/utils");
 yargs_1.default
     .command("*", "Generate Zod schemas from EdgeDB", {}, async (argv) => {
     const target = argv.target ?? "ts";
-    const relativeDir = argv.outputDir ?? "dbschema/edgedb-zod";
+    const relativeDir = argv.outputDir ?? "edgedb-zod";
     const projectRoot = await (0, utils_1.getProjectRoot)();
     if (!projectRoot) {
         throw new Error("Failed to detect project root.\nRun this command inside an EdgeDB project directory");
