@@ -17,7 +17,7 @@ yargs
     {},
     async (argv) => {
       const target = argv.target as "ts" | "mts" ?? "ts";
-      const relativeDir = argv.outputDir as string ?? "dbschema/edgedb-zod";
+      const relativeDir = (argv.outputDir as string) ?? "edgedb-zod";
 
       const projectRoot = await getProjectRoot();
       if (!projectRoot) {
