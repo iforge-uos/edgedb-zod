@@ -121,8 +121,8 @@ const writeObject = async (
 const writePointerConstraint = async (ctx: Context, constraint: PointerConstraint) => {
   if (constraint.name === "std::regexp") {
     const value = constraint.finalexpr
-      .replace(/^select std::re_test\(r"/, "")
-      .replace(/", __subject__\)$/, "");
+      .replace(/^select std::re_test\(r['"]/, "")
+      .replace(/['"], __subject__\)$/, "");
     return ctx.file.write(`.regex(/${value}/)`);
   }
 
