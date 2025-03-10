@@ -100,8 +100,8 @@ const writeObject = async (type, ctx, mode) => {
 const writePointerConstraint = async (ctx, constraint) => {
     if (constraint.name === "std::regexp") {
         const value = constraint.finalexpr
-            .replace(/^select std::re_test\(r"/, "")
-            .replace(/", __subject__\)$/, "");
+          .replace(/^select std::re_test\(r['"]/, "")
+          .replace(/['"], __subject__\)$/, "");
         return ctx.file.write(`.regex(/${value}/)`);
     }
     if (constraint.name === "std::exclusive") {
