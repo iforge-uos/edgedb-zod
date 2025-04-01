@@ -53,7 +53,7 @@ export const getProjectRoot = async (): Promise<string | null> => {
     }
     currentDir = path.join(currentDir, "..");
   }
-  return schemaDir;
+  return path.join(currentDir, schemaDir);
 };
 
 export const getPointerConstraints = async (

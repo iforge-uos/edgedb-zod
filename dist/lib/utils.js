@@ -67,7 +67,7 @@ const getProjectRoot = async () => {
         }
         currentDir = node_path_1.default.join(currentDir, "..");
     }
-    return schemaDir;
+    return node_path_1.default.join(currentDir, schemaDir);
 };
 exports.getProjectRoot = getProjectRoot;
 const getPointerConstraints = async (client, objName, pointer) => {
