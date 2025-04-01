@@ -25,7 +25,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generate = void 0;
 const path = __importStar(require("node:path"));
-const edgedb_1 = require("edgedb");
+const gel_1 = require("gel");
 const file_1 = require("./lib/file");
 const registry_1 = require("./lib/registry");
 const zod_1 = require("./lib/zod");
@@ -138,7 +138,7 @@ const writeObjectProperties = async (type, ctx, mode) => {
         writeProp(pointerType, ctx);
         const constraints = await (0, utils_1.getPointerConstraints)(ctx.client, type.name, pointer);
         constraints.forEach((constraint) => writePointerConstraint(ctx, constraint));
-        const isOptional = pointer.has_default || pointer.card === edgedb_1.$.Cardinality.AtMostOne;
+        const isOptional = pointer.has_default || pointer.card === gel_1.$.Cardinality.AtMostOne;
         if (isOptional) {
             ctx.file.write(".optional()");
         }
@@ -165,7 +165,7 @@ const visitScalars = (type, registry) => {
 const generate = async (client, options) => {
     const outputDir = options.outputDir;
     const modulesDir = path.join(outputDir, "modules");
-    const allTypes = await edgedb_1.$.introspect.types(client);
+    const allTypes = await gel_1.$.introspect.types(client);
     const registry = new registry_1.Registry(allTypes);
     // This is recursive, output dir will also exist
     await (0, utils_1.ensureDir)(modulesDir);

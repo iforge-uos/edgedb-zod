@@ -1,8 +1,8 @@
 import { z } from "zod";
 import { it, describe, expect } from "vitest";
 
-const std = import("../dbschema/edgedb-zod/modules/std");
-const cal = import("../dbschema/edgedb-zod/modules/cal");
+const std = import("../dbschema/zod/modules/std");
+const cal = import("../dbschema/zod/modules/cal");
 
 describe("std::int16", async () => {
   const schema = (await std).int16Schema;

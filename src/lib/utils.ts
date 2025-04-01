@@ -1,8 +1,8 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import * as TOML from "@iarna/toml";
-import { $, Client } from "edgedb";
-import { exists, readFileUtf8 } from "edgedb/dist/systemUtils";
+import { $, Client } from "gel";
+import { exists, readFileUtf8 } from "gel/dist/systemUtils";
 
 export interface PointerConstraint {
   name: string;

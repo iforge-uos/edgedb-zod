@@ -3,7 +3,7 @@ import { createClient } from "edgedb";
 
 import { generate } from "../../src/index";
 
-const outputDir = join(__dirname, "..", "..", "dbschema", "edgedb-zod");
+const outputDir = join(__dirname, "..", "..", "dbschema", "zod");
 
 export default async () => {
   console.time("Connect to EdgeDB");

@@ -3,7 +3,7 @@
 /node_modules
 
 /data
-/dbschema/edgedb-zod
+/dbschema/zod
 
 # Logs
 logs

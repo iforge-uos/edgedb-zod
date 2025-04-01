@@ -1,7 +1,7 @@
+import { describe, expect, it } from "vitest";
 import { z } from "zod";
-import { it, describe, expect } from "vitest";
 
-const extra = import("../dbschema/edgedb-zod/modules/extra");
+const extra = import("../dbschema/zod/modules/extra");
 
 describe("extra::MyEnum", async () => {
   const schema = (await extra).MyEnumSchema;

@@ -1,6 +1,6 @@
 import * as path from "node:path";
 
-import { $, Client } from "edgedb";
+import { $, Client } from "gel";
 
 import { File } from "./lib/file";
 import { Registry } from "./lib/registry";

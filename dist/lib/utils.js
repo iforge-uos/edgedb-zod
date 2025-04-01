@@ -30,7 +30,7 @@ exports.getPointerConstraints = exports.getProjectRoot = exports.ensureDir = voi
 const promises_1 = __importDefault(require("node:fs/promises"));
 const node_path_1 = __importDefault(require("node:path"));
 const TOML = __importStar(require("@iarna/toml"));
-const systemUtils_1 = require("edgedb/dist/systemUtils");
+const systemUtils_1 = require("gel/dist/systemUtils");
 const ensureDir = async (path) => {
     try {
         await promises_1.default.access(path);

@@ -30,19 +30,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const path = __importStar(require("node:path"));
 const yargs_1 = __importDefault(require("yargs"));
 const helpers_1 = require("yargs/helpers");
-const edgedb_1 = require("edgedb");
+const gel_1 = require("gel");
 const index_1 = require("./index");
 const utils_1 = require("./lib/utils");
 yargs_1.default
-    .command("*", "Generate Zod schemas from EdgeDB", {}, async (argv) => {
+    .command("*", "Generate Zod schemas from Gel", {}, async (argv) => {
     const target = argv.target ?? "ts";
-    const relativeDir = argv.outputDir ?? "edgedb-zod";
+    const relativeDir = argv.outputDir ?? "zod";
     const projectRoot = await (0, utils_1.getProjectRoot)();
     if (!projectRoot) {
         throw new Error("Failed to detect project root.\nRun this command inside an EdgeDB project directory");
     }
     const outputDir = path.join(projectRoot, relativeDir);
-    const client = (0, edgedb_1.createClient)();
+    const client = (0, gel_1.createClient)();
     const options = {
         target: target,
         outputDir: outputDir,

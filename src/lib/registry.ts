@@ -1,4 +1,4 @@
-import { $ } from "edgedb";
+import { $ } from "gel";
 
 interface RegistryItem<T> {
   id: string;

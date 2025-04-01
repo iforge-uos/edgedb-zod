@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { it, describe, expect } from "vitest";
 
-const defaultMod = import("../dbschema/edgedb-zod/modules/default");
+const defaultMod = import("../dbschema/zod/modules/default");
 
 describe("default::PostStatus", async () => {
   const schema = (await defaultMod).PostStatusSchema;

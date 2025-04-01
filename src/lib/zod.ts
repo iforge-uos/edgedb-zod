@@ -1,4 +1,4 @@
-import { $ } from "edgedb";
+import { $ } from "gel";
 
 const zodType = (name: string, ...args: unknown[]) => `${name}(${args})`;
 
