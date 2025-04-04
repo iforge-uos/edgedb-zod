@@ -52,7 +52,7 @@ const writeProp = (type, ctx, depth = 0) => {
     /* TODO: Implement ranges
     if (type.kind === "range") {
       const elementType = registry.resolveType(type.range_element_id);
-  
+
       writeProp(elementType, registry, file, depth);
       return file.write("...");
     }
@@ -138,9 +138,11 @@ const writeObjectProperties = async (type, ctx, mode) => {
         writeProp(pointerType, ctx);
         const constraints = await (0, utils_1.getPointerConstraints)(ctx.client, type.name, pointer);
         constraints.forEach((constraint) => writePointerConstraint(ctx, constraint));
-        const isOptional = pointer.has_default || pointer.card === gel_1.$.Cardinality.AtMostOne;
-        if (isOptional) {
+        if (pointer.has_default) {
             ctx.file.write(".optional()");
+        }
+        if (pointer.card === $.Cardinality.AtMostOne) {
+            ctx.file.write(".nullable()");
         }
         ctx.file.write(`, // ${pointerType.name}\n`);
     }

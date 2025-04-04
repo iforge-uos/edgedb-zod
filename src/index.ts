@@ -174,9 +174,11 @@ const writeObjectProperties = async (
 
     constraints.forEach((constraint) => writePointerConstraint(ctx, constraint));
 
-    const isOptional = pointer.has_default || pointer.card === $.Cardinality.AtMostOne;
-    if (isOptional) {
+    if (pointer.has_default) {
       ctx.file.write(".optional()");
+    }
+    if (pointer.card === $.Cardinality.AtMostOne) {
+      ctx.file.write(".nullable()");
     }
 
     ctx.file.write(`, // ${pointerType.name}\n`);
