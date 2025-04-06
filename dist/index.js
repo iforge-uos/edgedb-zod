@@ -52,7 +52,7 @@ const writeProp = (type, ctx, depth = 0) => {
     /* TODO: Implement ranges
     if (type.kind === "range") {
       const elementType = registry.resolveType(type.range_element_id);
-
+  
       writeProp(elementType, registry, file, depth);
       return file.write("...");
     }
@@ -100,8 +100,8 @@ const writeObject = async (type, ctx, mode) => {
 const writePointerConstraint = async (ctx, constraint) => {
     if (constraint.name === "std::regexp") {
         const value = constraint.finalexpr
-          .replace(/^select std::re_test\(r['"]/, "")
-          .replace(/['"], __subject__\)$/, "");
+            .replace(/^select std::re_test\(r['"]/, "")
+            .replace(/['"], __subject__\)$/, "");
         return ctx.file.write(`.regex(/${value}/)`);
     }
     if (constraint.name === "std::exclusive") {
@@ -141,7 +141,7 @@ const writeObjectProperties = async (type, ctx, mode) => {
         if (pointer.has_default) {
             ctx.file.write(".optional()");
         }
-        if (pointer.card === $.Cardinality.AtMostOne) {
+        if (pointer.card === gel_1.$.Cardinality.AtMostOne) {
             ctx.file.write(".nullable()");
         }
         ctx.file.write(`, // ${pointerType.name}\n`);
