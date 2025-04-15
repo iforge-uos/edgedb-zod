@@ -66,8 +66,8 @@ Partial output of `/dbschema/zod/modules/default.ts`:
 // #region default::User
 export const CreateUserSchema = z.
   object({ // default::HasTimestamps
-    createdAt: z.string().datetime().optional(), // std::datetime
-    updatedAt: z.string().datetime().optional(), // std::datetime
+    createdAt: z.iso.datetime().optional(), // std::datetime
+    updatedAt: z.iso.datetime().optional(), // std::datetime
   })
   .extend({ // default::User
     name: z.string(), // std::str
@@ -77,7 +77,7 @@ export const CreateUserSchema = z.
 
 export const UpdateUserSchema = z.
   object({ // default::HasTimestamps
-    updatedAt: z.string().regex(/^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d{3})?)?Z?$/).optional(), // std::datetime
+    updatedAt: z.iso.datetime().optional(), // std::datetime
   })
   .extend({ // default::User
     name: z.string(), // std::str

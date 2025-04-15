@@ -1,5 +1,5 @@
+import { describe, expect, it } from "vitest";
 import { z } from "zod";
-import { it, describe, expect } from "vitest";
 
 const std = import("../dbschema/zod/modules/std");
 const cal = import("../dbschema/zod/modules/cal");
@@ -16,7 +16,7 @@ describe("std::int16", async () => {
   });
 
   it("it does the correct checks", () => {
-    expect(schema._def.checks).toMatchSnapshot();
+    expect(schema._zod.def.checks).toMatchSnapshot();
   });
 });
 
@@ -32,7 +32,7 @@ describe("std::int32", async () => {
   });
 
   it("it does the correct checks", () => {
-    expect(schema._def.checks).toMatchSnapshot();
+    expect(schema._zod.def.checks).toMatchSnapshot();
   });
 });
 
@@ -48,7 +48,7 @@ describe("std::int64", async () => {
   });
 
   it("it does the correct checks", () => {
-    expect(schema._def.checks).toMatchSnapshot();
+    expect(schema._zod.def.checks).toMatchSnapshot();
   });
 });
 
@@ -78,7 +78,7 @@ describe("std::bool", async () => {
 
 describe("std::json", async () => {
   const schema = (await std).jsonSchema;
-
+±
   it("is exported", () => {
     expect(schema).toBeDefined();
   });
@@ -96,11 +96,11 @@ describe("std::uuid", async () => {
   });
 
   it("is the correct instance", () => {
-    expect(schema).toBeInstanceOf(z.ZodString);
+    expect(schema).toBeInstanceOf(z.ZodUUID);
   });
 
   it("it does the correct checks", () => {
-    expect(schema._def.checks).toMatchSnapshot();
+    expect(schema._zod.def.checks).toMatchSnapshot();
   });
 });
 
@@ -128,7 +128,7 @@ describe("std::datetime", async () => {
   });
 
   it("it does the correct checks", () => {
-    expect(schema._def.checks).toMatchSnapshot();
+    expect(schema._zod.def.checks).toMatchSnapshot();
   });
 });
 
@@ -144,7 +144,7 @@ describe("std::duration", async () => {
   });
 
   it("it does the correct checks", () => {
-    expect(schema._def.checks).toMatchSnapshot();
+    expect(schema._zod.def.checks).toMatchSnapshot();
   });
 });
 
@@ -160,7 +160,7 @@ describe("cal::local_datetime", async () => {
   });
 
   it("it does the correct checks", () => {
-    expect(schema._def.checks).toMatchSnapshot();
+    expect(schema._zod.def.checks).toMatchSnapshot();
   });
 });
 
@@ -176,6 +176,6 @@ describe("cal::local_time", async () => {
   });
 
   it("it does the correct checks", () => {
-    expect(schema._def.checks).toMatchSnapshot();
+    expect(schema._zod.def.checks).toMatchSnapshot();
   });
 });

@@ -34,7 +34,6 @@ export const scalarToZod = (type: $.introspect.ScalarType) => {
 
     case "std::uuid":
       return [
-        zodType("string"),
         zodType("uuid"),
       ];
 
@@ -82,24 +81,24 @@ export const scalarToZod = (type: $.introspect.ScalarType) => {
 
     case "std::datetime":
       return [
-        zodType("string"), 
-        zodType("datetime", "{ offset: true }")
+        "iso",
+        zodType("datetime", "{ offset: true }"),
       ];
     case "std::duration":
       return [
-        zodType("string"),
-        zodType("duration")
+        "iso",
+        zodType("duration"),
       ];
 
     case "cal::local_datetime":
       return [
-        zodType("string"),
-        zodType("datetime", "{ local: true }")
+        "iso",
+        zodType("datetime", "{ local: true }"),
       ];
     case "cal::local_time":
       return [
-        zodType("string"),
-        zodType("time")
+        "iso",
+        zodType("time"),
       ];
 
     default:

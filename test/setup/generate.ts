@@ -1,5 +1,5 @@
 import { join } from "node:path";
-import { createClient } from "edgedb";
+import { createClient } from "gel";
 
 import { generate } from "../../src/index";
 

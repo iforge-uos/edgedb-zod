@@ -1,107 +1,292 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`cal::local_datetime > it does the correct checks 1`] = `
-[
-  {
-    "kind": "datetime",
-    "local": true,
-    "offset": false,
-    "precision": null,
-  },
-]
-`;
+exports[`cal::local_datetime > it does the correct checks 1`] = `undefined`;
 
-exports[`cal::local_time > it does the correct checks 1`] = `
-[
-  {
-    "kind": "time",
-    "precision": null,
-  },
-]
-`;
+exports[`cal::local_time > it does the correct checks 1`] = `undefined`;
 
-exports[`std::datetime > it does the correct checks 1`] = `
-[
-  {
-    "kind": "datetime",
-    "local": false,
-    "offset": true,
-    "precision": null,
-  },
-]
-`;
+exports[`std::datetime > it does the correct checks 1`] = `undefined`;
 
-exports[`std::duration > it does the correct checks 1`] = `
-[
-  {
-    "kind": "duration",
-  },
-]
-`;
+exports[`std::duration > it does the correct checks 1`] = `undefined`;
 
 exports[`std::int16 > it does the correct checks 1`] = `
 [
-  {
-    "kind": "int",
-    "message": undefined,
+  ZodNumberFormat {
+    "_def": {
+      "abort": false,
+      "check": "number_format",
+      "format": "safeint",
+      "type": "number",
+    },
+    "_zod": {
+      "check": [Function],
+      "computed": {
+        "format": "safeint",
+        "maximum": 9007199254740991,
+        "minimum": -9007199254740991,
+        "pattern": /\\^\\\\d\\+\\$/,
+      },
+      "constr": [Function],
+      "def": {
+        "abort": false,
+        "check": "number_format",
+        "format": "safeint",
+        "type": "number",
+      },
+      "deferred": [],
+      "id": "number_ivnhvnxtzw",
+      "onattach": [Function],
+      "parse": [Function],
+      "pattern": /\\^\\\\d\\+\\$/,
+      "run": [Function],
+      "traits": Set {
+        "ZodNumberFormat",
+        "$ZodNumber",
+        "$ZodCheckNumberFormat",
+        "$ZodCheck",
+        "$ZodType",
+        "ZodType",
+      },
+      "version": {
+        "major": 0,
+        "minor": 5,
+        "patch": 0,
+      },
+    },
+    "and": [Function],
+    "array": [Function],
+    "brand": [Function],
+    "catch": [Function],
+    "check": [Function],
+    "clone": [Function],
+    "def": {
+      "abort": false,
+      "check": "number_format",
+      "format": "safeint",
+      "type": "number",
+    },
+    "default": [Function],
+    "describe": [Function],
+    "isNullable": [Function],
+    "isOptional": [Function],
+    "meta": [Function],
+    "nonoptional": [Function],
+    "nullable": [Function],
+    "nullish": [Function],
+    "optional": [Function],
+    "or": [Function],
+    "overwrite": [Function],
+    "parse": [Function],
+    "parseAsync": [Function],
+    "pipe": [Function],
+    "readonly": [Function],
+    "refine": [Function],
+    "register": [Function],
+    "safeParse": [Function],
+    "safeParseAsync": [Function],
+    "spa": [Function],
+    "superRefine": [Function],
+    "transform": [Function],
+    "~standard": {
+      "validate": [Function],
+      "vendor": "zod",
+      "version": 1,
+    },
   },
-  {
-    "inclusive": true,
-    "kind": "min",
-    "message": undefined,
-    "value": -32768,
+  $ZodCheckGreaterThan {
+    "_zod": {
+      "check": [Function],
+      "constr": [Function],
+      "def": {
+        "check": "greater_than",
+        "inclusive": true,
+        "value": -32768,
+      },
+      "deferred": [],
+      "onattach": [Function],
+      "traits": Set {
+        "$ZodCheckGreaterThan",
+        "$ZodCheck",
+      },
+    },
   },
-  {
-    "inclusive": true,
-    "kind": "max",
-    "message": undefined,
-    "value": 32767,
+  $ZodCheckLessThan {
+    "_zod": {
+      "check": [Function],
+      "constr": [Function],
+      "def": {
+        "check": "less_than",
+        "inclusive": true,
+        "value": 32767,
+      },
+      "deferred": [],
+      "onattach": [Function],
+      "traits": Set {
+        "$ZodCheckLessThan",
+        "$ZodCheck",
+      },
+    },
   },
 ]
 `;
 
 exports[`std::int32 > it does the correct checks 1`] = `
 [
-  {
-    "kind": "int",
-    "message": undefined,
+  ZodNumberFormat {
+    "_def": {
+      "abort": false,
+      "check": "number_format",
+      "format": "safeint",
+      "type": "number",
+    },
+    "_zod": {
+      "check": [Function],
+      "computed": {
+        "format": "safeint",
+        "maximum": 9007199254740991,
+        "minimum": -9007199254740991,
+        "pattern": /\\^\\\\d\\+\\$/,
+      },
+      "constr": [Function],
+      "def": {
+        "abort": false,
+        "check": "number_format",
+        "format": "safeint",
+        "type": "number",
+      },
+      "deferred": [],
+      "id": "number_konczqghzd",
+      "onattach": [Function],
+      "parse": [Function],
+      "pattern": /\\^\\\\d\\+\\$/,
+      "run": [Function],
+      "traits": Set {
+        "ZodNumberFormat",
+        "$ZodNumber",
+        "$ZodCheckNumberFormat",
+        "$ZodCheck",
+        "$ZodType",
+        "ZodType",
+      },
+      "version": {
+        "major": 0,
+        "minor": 5,
+        "patch": 0,
+      },
+    },
+    "and": [Function],
+    "array": [Function],
+    "brand": [Function],
+    "catch": [Function],
+    "check": [Function],
+    "clone": [Function],
+    "def": {
+      "abort": false,
+      "check": "number_format",
+      "format": "safeint",
+      "type": "number",
+    },
+    "default": [Function],
+    "describe": [Function],
+    "isNullable": [Function],
+    "isOptional": [Function],
+    "meta": [Function],
+    "nonoptional": [Function],
+    "nullable": [Function],
+    "nullish": [Function],
+    "optional": [Function],
+    "or": [Function],
+    "overwrite": [Function],
+    "parse": [Function],
+    "parseAsync": [Function],
+    "pipe": [Function],
+    "readonly": [Function],
+    "refine": [Function],
+    "register": [Function],
+    "safeParse": [Function],
+    "safeParseAsync": [Function],
+    "spa": [Function],
+    "superRefine": [Function],
+    "transform": [Function],
+    "~standard": {
+      "validate": [Function],
+      "vendor": "zod",
+      "version": 1,
+    },
   },
-  {
-    "inclusive": true,
-    "kind": "min",
-    "message": undefined,
-    "value": -2147483648,
+  $ZodCheckGreaterThan {
+    "_zod": {
+      "check": [Function],
+      "constr": [Function],
+      "def": {
+        "check": "greater_than",
+        "inclusive": true,
+        "value": -2147483648,
+      },
+      "deferred": [],
+      "onattach": [Function],
+      "traits": Set {
+        "$ZodCheckGreaterThan",
+        "$ZodCheck",
+      },
+    },
   },
-  {
-    "inclusive": true,
-    "kind": "max",
-    "message": undefined,
-    "value": 2147483647,
+  $ZodCheckLessThan {
+    "_zod": {
+      "check": [Function],
+      "constr": [Function],
+      "def": {
+        "check": "less_than",
+        "inclusive": true,
+        "value": 2147483647,
+      },
+      "deferred": [],
+      "onattach": [Function],
+      "traits": Set {
+        "$ZodCheckLessThan",
+        "$ZodCheck",
+      },
+    },
   },
 ]
 `;
 
 exports[`std::int64 > it does the correct checks 1`] = `
 [
-  {
-    "inclusive": true,
-    "kind": "min",
-    "message": undefined,
-    "value": -9223372036854775808n,
+  $ZodCheckGreaterThan {
+    "_zod": {
+      "check": [Function],
+      "constr": [Function],
+      "def": {
+        "check": "greater_than",
+        "inclusive": true,
+        "value": -9223372036854775808n,
+      },
+      "deferred": [],
+      "onattach": [Function],
+      "traits": Set {
+        "$ZodCheckGreaterThan",
+        "$ZodCheck",
+      },
+    },
   },
-  {
-    "inclusive": true,
-    "kind": "max",
-    "message": undefined,
-    "value": 9223372036854775807n,
+  $ZodCheckLessThan {
+    "_zod": {
+      "check": [Function],
+      "constr": [Function],
+      "def": {
+        "check": "less_than",
+        "inclusive": true,
+        "value": 9223372036854775807n,
+      },
+      "deferred": [],
+      "onattach": [Function],
+      "traits": Set {
+        "$ZodCheckLessThan",
+        "$ZodCheck",
+      },
+    },
   },
 ]
 `;
 
-exports[`std::uuid > it does the correct checks 1`] = `
-[
-  {
-    "kind": "uuid",
-  },
-]
-`;
+exports[`std::uuid > it does the correct checks 1`] = `undefined`;

@@ -28,7 +28,6 @@ const scalarToZod = (type) => {
             ];
         case "std::uuid":
             return [
-                zodType("string"),
                 zodType("uuid"),
             ];
         case "std::int16":
@@ -68,23 +67,23 @@ const scalarToZod = (type) => {
             ];
         case "std::datetime":
             return [
-                zodType("string"),
-                zodType("datetime", "{ offset: true }")
+                "iso",
+                zodType("datetime", "{ offset: true }"),
             ];
         case "std::duration":
             return [
-                zodType("string"),
-                zodType("duration")
+                "iso",
+                zodType("duration"),
             ];
         case "cal::local_datetime":
             return [
-                zodType("string"),
-                zodType("datetime", "{ local: true }")
+                "iso",
+                zodType("datetime", "{ local: true }"),
             ];
         case "cal::local_time":
             return [
-                zodType("string"),
-                zodType("time")
+                "iso",
+                zodType("time"),
             ];
         default:
             // TODO: Null might make more sense
