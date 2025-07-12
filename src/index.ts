@@ -39,7 +39,7 @@ const writeProp = (
 ): void => {
   if (type.kind === "scalar") {
     const zodString = scalarToZod(type).join(".");
-    return ctx.file.write(`z.${zodString}`);
+    return ctx.file.write(zodString);
   }
 
   if (type.kind === "array") {
@@ -248,7 +248,7 @@ export const generate = async (client: Client, options: GenerateOptions) => {
 
     const file = new File(moduleOutputFile);
 
-    file.importNamed("z", "zod");
+    file.importStarNamed("z", "zod/v4");
 
     const ctx: Context = {
       file: file,
@@ -265,7 +265,7 @@ export const generate = async (client: Client, options: GenerateOptions) => {
       file.write(`// #region ${scalar.fullName}\n`);
 
       const methods = scalarToZod(scalar.type);
-      file.exportNamed(identifier, `z.${methods.join(".")}`);
+      file.exportNamed(identifier, methods.join("."));
 
       file.write("// #endregion\n");
     }

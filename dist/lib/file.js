@@ -7,17 +7,25 @@ exports.File = void 0;
 const promises_1 = __importDefault(require("node:fs/promises"));
 class File {
     buffer;
+    importBuffer;
     filePath;
     constructor(filePath) {
         this.buffer = "";
+        this.importBuffer = "";
         this.filePath = filePath;
     }
     write(data, depth = 0) {
         const indentation = "  ".repeat(Math.max(0, depth));
         this.buffer += `${indentation}${data}`;
     }
+    writeImport(data) {
+        this.importBuffer += data;
+    }
     importNamed(name, mod) {
-        return this.write(`import { ${name} } from "${mod}";\n`);
+        return this.writeImport(`import { ${name} } from "${mod}";\n`);
+    }
+    importStarNamed(name, mod) {
+        return this.writeImport(`import * as ${name} from "${mod}";\n`);
     }
     exportStar(mod, alias) {
         const line = !alias ? "*" : `* as ${alias}`;
@@ -27,7 +35,7 @@ class File {
         return this.write(`export const ${name} = ${value};\n`);
     }
     save() {
-        const contents = this.buffer;
+        const contents = `${this.importBuffer}\n${this.buffer}`;
         return promises_1.default.writeFile(this.filePath, contents, "utf-8");
     }
 }

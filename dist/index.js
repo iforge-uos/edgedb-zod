@@ -28,8 +28,8 @@ const path = __importStar(require("node:path"));
 const gel_1 = require("gel");
 const file_1 = require("./lib/file");
 const registry_1 = require("./lib/registry");
-const zod_1 = require("./lib/zod");
 const utils_1 = require("./lib/utils");
+const zod_1 = require("./lib/zod");
 const isUserObject = (type, registry) => {
     if (type.kind !== "object") {
         return false;
@@ -42,7 +42,7 @@ const isUserObject = (type, registry) => {
 const writeProp = (type, ctx, depth = 0) => {
     if (type.kind === "scalar") {
         const zodString = (0, zod_1.scalarToZod)(type).join(".");
-        return ctx.file.write(`z.${zodString}`);
+        return ctx.file.write(zodString);
     }
     if (type.kind === "array") {
         const elementType = ctx.registry.resolveType(type.array_element_id);

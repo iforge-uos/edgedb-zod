@@ -6,8 +6,17 @@
   "description": "Creates Zod schemas for your EdgeDB types",
   "bin": "dist/cli.js",
   "main": "dist/index.js",
-  "files": ["dist"],
-  "keywords": ["gel", "geldata", "edgedb", "zod", "schema", "generator"],
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "gel",
+    "geldata",
+    "edgedb",
+    "zod",
+    "schema",
+    "generator"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/Sikarii/edgedb-zod.git"
@@ -22,7 +31,8 @@
     "@iarna/toml": "^2.2.5",
     "gel": "^2.0.0",
     "yargs": "^17.6.0",
-    "zod": "4.0.0-beta.20250414T061543"
+    "zod": "^3.25.56",
+    "zod-temporal": "^1.1.0"
   },
   "devDependencies": {
     "@types/node": "^18.11.7",
