@@ -12,6 +12,7 @@ export const scalarToZod = (type: $.introspect.ScalarType) => {
     const values = type.enum_values.map((v) => `"${v}"`);
 
     return [
+      "z",
       zodEnum(values),
     ];
   }
@@ -117,6 +118,7 @@ export const scalarToZod = (type: $.introspect.ScalarType) => {
     default:
       // TODO: Null might make more sense
       return [
+        "z",
         zodType("never"),
       ];
   }

@@ -10,6 +10,7 @@ const scalarToZod = (type) => {
     if (type.enum_values) {
         const values = type.enum_values.map((v) => `"${v}"`);
         return [
+            "z",
             zodEnum(values),
         ];
     }
@@ -101,6 +102,7 @@ const scalarToZod = (type) => {
         default:
             // TODO: Null might make more sense
             return [
+                "z",
                 zodType("never"),
             ];
     }

@@ -194,7 +194,8 @@ const generate = async (client, options) => {
         const moduleTypes = registry.getAllByModule(module);
         const moduleOutputFile = path.join(outputDir, "modules", `${module}.ts`);
         const file = new file_1.File(moduleOutputFile);
-        file.importNamed("z", "zod");
+        file.importStarNamed("z", "zod/v4");
+        file.importStarNamed("zt", "zod-temporal");
         const ctx = {
             file: file,
             client: client,
@@ -207,7 +208,7 @@ const generate = async (client, options) => {
             file.write("\n");
             file.write(`// #region ${scalar.fullName}\n`);
             const methods = (0, zod_1.scalarToZod)(scalar.type);
-            file.exportNamed(identifier, `z.${methods.join(".")}`);
+            file.exportNamed(identifier, methods.join("."));
             file.write("// #endregion\n");
         }
         for (const object of moduleTypes.objects) {
