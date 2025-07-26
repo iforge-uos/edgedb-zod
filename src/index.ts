@@ -248,7 +248,8 @@ export const generate = async (client: Client, options: GenerateOptions) => {
 
     const file = new File(moduleOutputFile);
 
-    file.importStarNamed("z", "zod/v4");
+		file.importStarNamed("z", "zod");
+		file.importStarNamed("zt", "zod-temporal");
 
     const ctx: Context = {
       file: file,

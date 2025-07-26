@@ -194,7 +194,7 @@ const generate = async (client, options) => {
         const moduleTypes = registry.getAllByModule(module);
         const moduleOutputFile = path.join(outputDir, "modules", `${module}.ts`);
         const file = new file_1.File(moduleOutputFile);
-        file.importStarNamed("z", "zod/v4");
+        file.importStarNamed("z", "zod");
         file.importStarNamed("zt", "zod-temporal");
         const ctx = {
             file: file,

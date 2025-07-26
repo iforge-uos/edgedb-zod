@@ -31,7 +31,7 @@
     "@iarna/toml": "^2.2.5",
     "gel": "^2.0.0",
     "yargs": "^17.6.0",
-    "zod": "^3.25.56",
+    "zod": "^4.0.10",
     "zod-temporal": "^1.1.0"
   },
   "devDependencies": {
